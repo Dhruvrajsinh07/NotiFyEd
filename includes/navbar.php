@@ -33,7 +33,7 @@
               <a class="nav-link text-purple" href="../pages/personal.php">Personal Notice</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-purple" href="#">Logout</a>
+              <a class="nav-link text-purple" href="<?=urlof('api/user/logout.php')?> " onclick="return confirm('Sure! You Want To Logout.');">Logout</a>
             </li>
           </ul>
         </div>
