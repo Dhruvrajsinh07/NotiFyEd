@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Profile | NotiFyEd</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f0fa;
+    }
+
+    .text-purple {
+      color: #6a00ff !important;
+    }
+
+    .main {
+      padding: 2rem;
+    }
+
+    .card {
+      border: none;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 12px 30px rgba(106, 0, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+    }
+
+    .card-title,
+    .form-label,
+    h2 {
+      color: #6a00ff !important;
+      font-weight: 600;
+    }
+
+    .btn-purple {
+      background-color: #6a00ff;
+      color: white;
+      font-weight: 600;
+      border-radius: 50px;
+      border: none;
+      transition: all 0.3s;
+    }
+
+    .btn-purple:hover {
+      background-color: #5800cc;
+      box-shadow: 0 6px 18px rgba(106, 0, 255, 0.3);
+    }
+
+    .form-control {
+      border-radius: 50px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #6a00ff;
+      box-shadow: 0 0 8px rgba(106, 0, 255, 0.4);
+    }
+
+    .nav-card {
+      background-color: #fff;
+      box-shadow: 0 6px 15px rgba(106, 0, 255, 0.1);
+      border-radius: 16px;
+      padding: 1rem 2rem;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-card:hover {
+      box-shadow: 0 8px 20px rgba(106, 0, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .nav-link.text-purple {
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .nav-link.text-purple:hover {
+      color: #5800cc !important;
+      transform: scale(1.05);
+    }
+
+    .navbar-toggler {
+      border: none;
+    }
+
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Name -->
+  <div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
+    NotiFyEd Admin
+  </div>
+
+  <!-- Top Navbar -->
+  <div class="container">
+    <div class="nav-card">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid px-0">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav justify-content-around w-100">
+              <li class="nav-item">
+                <a class="nav-link text-purple" href="./pages/post_note.php">Post Notice</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-purple" href="./pages/all_note.php">All Notices</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-purple" href="./index.php">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-purple" href="./pages/personal.php">Personal Notice</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-purple" href="./logout.php">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Profile Form -->
+  <div class="main container">
+    <h2 class="mb-4">Admin Profile</h2>
+
+    <div class="card p-4">
+      <form>
+        <div class="mb-3">
+          <label for="facultyName" class="form-label">Faculty Name</label>
+          <input type="text" class="form-control" id="facultyName" value="Dr. Sameer Patil" />
+        </div>
+
+        <div class="mb-3">
+          <label for="facultyNo" class="form-label">Faculty No</label>
+          <input type="text" class="form-control" id="facultyNo" value="FCT1234" />
+        </div>
+
+        <div class="mb-3">
+          <label for="designation" class="form-label">Designation</label>
+          <input type="text" class="form-control" id="designation" value="Assistant Professor" />
+        </div>
+
+        <div class="mb-3">
+          <label for="subject" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="subject" value="Database Management System" />
+        </div>
+
+        <div class="mb-3">
+          <label for="facultyEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="facultyEmail" value="sameer.patil@college.edu" />
+        </div>
+
+        <button type="submit" class="btn btn-purple">Update Profile</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
