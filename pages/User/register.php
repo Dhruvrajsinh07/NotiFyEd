@@ -160,7 +160,7 @@
     document.getElementById('emsg5').innerHTML = "";
 
 
-    let vname = /^[A-Za-z]+(?: [A-Za-z]+)+$/;;
+    let vname = /^[A-Za-z]+(?: [A-Za-z]+)+$/;
     let vemail = /^[a-zA-Z0-9]+@[a-z]+\.[a-z]{2,}$/;
     let vpass = /^[A-z0-9]{6,18}$/;
 
