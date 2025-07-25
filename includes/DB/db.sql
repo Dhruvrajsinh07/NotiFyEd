@@ -13,3 +13,14 @@ CREATE TABLE `User`(
 );
 
 INSERT INTO `user`(`Username`, `Email`, `Password`, `role`) VALUES ('Khushal Rajani','admin@gmail.com','admin12345','Admin');
+
+CREATE TABLE `issue_notice`(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    title varchar(255) NOT NULL,
+    noticeCategory varchar(255) NOT NULL,
+    facultyName varchar(255) NOT NULL,
+    targetClass varchar(255) NOT NULL,
+    noticeBody varchar(255) NOT NULL,
+    noticeDay varchar(255) NOT NULL,
+    publishDate varchar(255) NOT NULL
+);
