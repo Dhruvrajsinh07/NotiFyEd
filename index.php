@@ -147,7 +147,7 @@ if (!isset($_SESSION['user'])) {
               <?php
             if($_SESSION['role'] == 'student'){
               ?><li class="nav-item">
-              <a class="nav-link text-purple" href="<?= urlof('./pages/feedback.php');?>">Feedback Hi</a>
+              <a class="nav-link text-purple" href="<?= urlof('./pages/feedback.php');?>">Feedback</a>
             </li><?php
             }
             ?>
