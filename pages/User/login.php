@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -13,6 +14,8 @@
 
   <!-- FontAwesome -->
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
   <style>
     body {
@@ -91,42 +94,36 @@
     }
   </style>
 </head>
+
 <body>
 
-  <form class="login-form">
+  <form class="login-form" method="Post">
     <div class="site-name">NotiFyEd</div>
     <h3 class="text-center mb-4">Login</h3>
 
     <!-- Username -->
     <div class="mb-3 input-with-icon">
-      <input
-        type="text"
-        class="form-control"
-        id="username"
-        placeholder="Enrollment No. / Username"
-        required
-      />
+      <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" />
       <i class="fa fa-user form-icon"></i>
     </div>
+    <small id="emsg2" style="color: red;" class="text-danger d-block text-center w-100"></small>
+
 
     <!-- Password -->
     <div class="mb-4 input-with-icon">
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        placeholder="Password"
-        required
-      />
+      <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" />
       <i class="fa fa-lock form-icon"></i>
     </div>
+    <small id="emsg1" style="color: red;" class="text-danger d-block text-center w-100"></small>
+
+    <small id="emsg" style="color: red;" class="text-danger d-block text-center w-100"></small>
 
     <!-- Login Button -->
     <input type="button" class="btn-purple" value="Login" onclick="login()" />
 
     <!-- Register Redirect -->
-    <p class="text-center mt-3 small">Don't have an account? 
-        <a href="./register.php" class="text-decoration-none text-purple fw-semibold">Register</a>
+    <p class="text-center mt-3 small">Don't have an account?
+      <a href="./register.php" class="text-decoration-none text-purple fw-semibold">Register</a>
     </p>
 
     <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
@@ -137,9 +134,66 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function login() {
-      // basic form submission or redirection logic
-      alert("Login clicked");
+
+      let Username = document.getElementById('Username').value;
+      let Password = document.getElementById('Password').value;
+
+      document.getElementById('emsg1').innerHTML = "";
+      document.getElementById('emsg').innerHTML = "";
+      document.getElementById('emsg2').innerHTML = "";
+
+      let vname = /^[A-Za-z]+(?: [A-Za-z]+)+$/;
+      let vpass = /^[A-z0-9]{6,18}$/;
+
+      if (Username != "" && Username != null && Password != "" && Password != null) {
+        if (vname.test(Username)) {
+          if (vpass.test(Password)) {
+
+            let data = {
+              Username: $('#Username').val(),
+              Password: $('#Password').val()
+            }
+
+            $.ajax({
+              url: "../../api/user/login.php",
+              method: "POST",
+              data: data,
+              success: function(response) {
+                if (response.success) {
+                  alert("Login Successfully");
+                  $('#Username').val("");
+                  $('#Password').val("");
+                  window.location.href = "../../index.php"
+                } else {
+                  if (response.reason === "Username") {
+                    document.getElementById('emsg2').innerHTML = "User With This Username Not Registered";
+                  } else if (response.reason === "Password") {
+                    document.getElementById('emsg1').innerHTML = "Incorrect Password";
+                  }
+                }
+              },
+              error: function(error) {
+                alert("Not LoggedIn");
+                window.location.href = "./login.php";
+              }
+            })
+          } else {
+            document.getElementById('emsg1').innerHTML = "Password Pattern Not Matched";
+            return false;
+          }
+        } else {
+          document.getElementById('emsg2').innerHTML = "Name is too short";
+          return false;
+        }
+      } else {
+        document.getElementById('emsg').innerHTML = "Null Field Not Allowed";
+        return false;
+      }
+
+
+
     }
   </script>
 </body>
+
 </html>
