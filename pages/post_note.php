@@ -102,9 +102,7 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <option value="Events">Events</option>
             <option value="Holidays">Holidays</option>
             <option value="Suspend">Suspend</option>
-            <option value="Timetable Changes">Timetable Changes</option>
             <option value="Fees">Fees</option>
-            <option value="Assignment">Assignment</option>
             <option value="Result Announcement">Result Announcement</option>
           </select>
         </div>
