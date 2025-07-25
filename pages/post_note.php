@@ -78,16 +78,16 @@ include '../includes/navbar.php'; ?>
   <div class="main container">
     <h2 class="mb-4">Post a New Notice</h2>
     <div class="card p-4">
-      <form>
+      <form method="POST">
         <div class="mb-3">
-          <label for="noticeTitle" class="form-label">Notice Title</label>
-          <input type="text" class="form-control" id="noticeTitle" placeholder="Enter notice title" required>
+          <label for="title" class="form-label">Notice Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter notice title" name="title">
         </div>
 
         <div class="mb-3">
           <label for="noticeCategory" class="form-label">Category</label>
-          <select class="form-select" id="noticeCategory" required>
-            <option value="">Select category</option>
+          <select class="form-select" id="noticeCategory" name="noticeCategory">
+            <option value="" disabled selected hidden>Select category</option>
             <option value="Exams">Exams</option>
             <option value="Events">Events</option>
             <option value="Holidays">Holidays</option>
@@ -101,13 +101,13 @@ include '../includes/navbar.php'; ?>
 
         <div class="mb-3">
           <label for="noticeDay" class="form-label">Day</label>
-          <input type="text" class="form-control" id="noticeDay" placeholder="Auto-filled from publish date" readonly>
+          <input type="text" class="form-control" id="noticeDay" placeholder="Auto-filled from publish date" name="noticeDay" readonly>
         </div>
 
         <div class="mb-3">
           <label for="facultyName" class="form-label">Sender (Faculty)</label>
-          <select class="form-select" id="facultyName" required>
-            <option value="">Select Faculty</option>
+          <select class="form-select" id="facultyName" name="facultyName">
+            <option value="" disabled selected hidden>Select Faculty</option>
             <option value="Faculty 1">Faculty 1</option>
             <option value="Faculty 2">Faculty 2</option>
             <option value="Faculty 3">Faculty 3</option>
@@ -118,7 +118,7 @@ include '../includes/navbar.php'; ?>
 
         <div class="mb-3">
           <label for="targetClass" class="form-label">Target Class</label>
-          <select class="form-select" id="targetClass" required>
+          <select class="form-select" id="targetClass" name="targetClass">
             <option value="All" selected>All</option>
             <option value="FY-A">FY-A</option>
             <option value="FY-B">FY-B</option>
@@ -136,15 +136,15 @@ include '../includes/navbar.php'; ?>
 
         <div class="mb-3">
           <label for="noticeBody" class="form-label">Notice Content</label>
-          <textarea class="form-control" id="noticeBody" rows="5" placeholder="Write notice details here..." required></textarea>
+          <textarea class="form-control" id="noticeBody" rows="5" placeholder="Write notice details here..." name="noticeBody"></textarea>
         </div>
 
         <div class="mb-3">
           <label for="publishDate" class="form-label">Schedule Publish Date</label>
-          <input type="date" class="form-control" id="publishDate">
+          <input type="date" class="form-control" id="publishDate" name="publishDate">
         </div>
-
-        <button type="submit" class="btn btn-purple">Post Notice</button>
+        <small id="emsg" style="color: red;" class="text-danger d-block text-center w-100"></small>
+        <button type="button" class="btn btn-purple" onclick="Post()">Post Notice</button>
       </form>
     </div>
   </div>
@@ -164,6 +164,55 @@ include '../includes/navbar.php'; ?>
         }
       });
     });
+
+    function Post(){
+
+       let title = document.getElementById('title').value;
+       let noticeCategory = document.getElementById('noticeCategory').value;
+       let facultyName = document.getElementById('facultyName').value;
+       let targetClass = document.getElementById('targetClass').value;
+       let noticeBody = document.getElementById('noticeBody').value;
+       let noticeDay = document.getElementById('noticeDay').value;
+       let publishDate = document.getElementById('publishDate').value;
+
+       document.getElementById('emsg').innerHTML = "";
+
+       if(title !="" && title !=null && noticeCategory !="" && noticeCategory !=null && facultyName !="" && facultyName !=null && targetClass !="" && targetClass !=null && noticeBody !="" && noticeBody !=null && noticeDay !="" && noticeDay !=null && publishDate !="" && publishDate !=null)
+       {
+        let data = {
+          title : $('#title').val(),
+          noticeCategory : $('#noticeCategory').val(),
+          facultyName : $('#facultyName').val(),
+          targetClass : $('#targetClass').val(),
+          noticeBody : $('#noticeBody').val(),
+          noticeDay : $('#noticeDay').val(),
+          publishDate : $('#publishDate').val()
+        }
+
+          $.ajax({
+            url:"../api/notice/issue_notice.php",
+            method:"POST",
+            data:data,
+            success:function(response){
+              alert('Notice Issued Successfully');
+              window.location.href = "../index.php";
+            },
+            error:function(error){
+              alert('Notice Not Issued');
+              window.location.href = "./post_note.php";
+              return false;
+            }
+
+
+          })
+       }else{
+        document.getElementById('emsg').innerHTML = "Null Fields Not Allowed";
+        return false;
+       }
+
+
+
+    }
   </script>
 </body>
 </html>
