@@ -35,7 +35,7 @@
             <?php
             if($_SESSION['role'] == 'student'){
               ?><li class="nav-item">
-              <a class="nav-link text-purple" href="<?= urlof('./pages/feedback.php');?>">Feedback</a>
+              <a class="nav-link text-purple" href="<?= urlof('./pages/feedback.php');?>">Feedback dfgeg</a>
             </li><?php
             }
             ?>
