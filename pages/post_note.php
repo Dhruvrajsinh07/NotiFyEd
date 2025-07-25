@@ -1,5 +1,7 @@
-<?php include '../includes/header.php'; ?>
-<?php include '../includes/navbar.php'; ?>
+<?php 
+require_once "../includes/init.php";
+include '../includes/header.php';
+include '../includes/navbar.php'; ?>
 
   <style>
     body {
