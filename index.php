@@ -1,3 +1,11 @@
+<?php
+require_once "./includes/init.php";
+$url = urlof('pages/User/login.php');
+if (!isset($_SESSION['user'])) {
+    header("Location: $url");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,7 +145,7 @@
                 <a class="nav-link text-purple" href="./pages/personal.php">Personal Notice</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-purple" href="./logout.php">Logout</a>
+                <a class="nav-link text-purple" href="<?=urlof('api/user/logout.php')?>" onclick="return confirm('Sure! You Want To Logout.');">Logout</a>
               </li>
             </ul>
           </div>
