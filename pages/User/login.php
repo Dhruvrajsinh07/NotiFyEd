@@ -121,11 +121,6 @@
     <!-- Login Button -->
     <input type="button" class="btn-purple" value="Login" onclick="login()" />
 
-    <!-- Register Redirect -->
-    <p class="text-center mt-3 small">Don't have an account?
-      <a href="./register.php" class="text-decoration-none text-purple fw-semibold">Register</a>
-    </p>
-
     <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
 
   </form>
