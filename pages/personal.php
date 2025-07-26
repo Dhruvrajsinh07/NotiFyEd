@@ -1,12 +1,7 @@
 <?php 
 require_once "../includes/init.php";
-$url = urlof('pages/User/login.php');
-if (!isset($_SESSION['user'])) {
-    header("Location: $url");
-    exit;
-}
-include '../includes/header.php';
-include '../includes/navbar.php'; 
+include pathof('./includes/header.php');
+include pathof('./includes/navbar.php');
 ?>
 
   <style>
