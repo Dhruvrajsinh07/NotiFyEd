@@ -29,7 +29,7 @@
               <a class="nav-link text-purple" href="#">Schedule Notices</a>
             </li> -->
             <li class="nav-item">
-              <a class="nav-link text-purple" href="<?= urlof('./index.php')?>">Profile</a>
+              <a class="nav-link text-purple" href="<?= urlof('./index.php')?>">Dashboard</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link text-purple" href="#">Email Notifications</a>
