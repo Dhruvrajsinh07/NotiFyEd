@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once "../../includes/init.php";
+include pathof('./includes/header.php');
+include pathof('./includes/navbar.php');
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Register | NotiFyEd</title>
-
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Poppins Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
-  <!-- FontAwesome Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+?>
 
 
   <style>
@@ -101,7 +90,7 @@
 <body>
   <form class="registration-form" method="Post">
     <h5 class="text-center text-uppercase fw-bold mb-2" style="color: #6a00ff;">NotiFyEd</h5>
-    <h3>Create Account</h3>
+    <h3>Create Admin Account</h3>
 
     <div class="mb-3 input-with-icon">
       <i class="fa fa-user form-icon"></i>
@@ -181,7 +170,7 @@
                 data:data,
                 success: function(response){
                   alert("Registered Successfully");
-                  window.location.href = "./login.php";
+                  window.location.href = "../../index.php";
                 },
                 error:function(error){
                   alert("User With This E-mail & Password Is Already Registered");
