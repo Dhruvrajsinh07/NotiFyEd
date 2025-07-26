@@ -2,6 +2,21 @@
 require_once "../includes/init.php";
 include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
+
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$q = "SELECT * FROM `student` WHERE id = $id";
+
+$stmt = $conn->prepare($q);
+$stmt->execute();
+
+$fstud = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$q2 = "SELECT Username FROM `user` WHERE role = 'Admin'";
+
+$stmt = $conn->prepare($q2);
+$stmt->execute();
+
+$admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
   <style>
     body {
@@ -82,32 +97,31 @@ include pathof('./includes/navbar.php');
 <body>
 
   <div class="form-container">
-    <a href="./personal.php" class="back-btn"><i class="fas fa-arrow-left me-1"></i>Back to Page</a>
     <h2>📢 Post Personal Notice</h2>
 
-    <form action="submit_personal_notice.php" method="POST">
+    <form method="POST">
       <!-- To Student -->
       <div class="mb-3">
         <label class="form-label">To Student</label>
-        <input type="text" name="student_name" class="form-control" value="Rahul Sharma" readonly />
+        <input type="text" name="student_name" class="form-control" value="<?= $fstud['Username']?>" id="student_name" readonly />
       </div>
 
       <!-- Email -->
       <div class="mb-3">
         <label class="form-label">Email</label>
-        <input type="email" name="student_email" class="form-control" value="rahul@example.com" readonly />
+        <input type="email" name="student_email" class="form-control" value="<?= $fstud['Email']?>" id="student_email" readonly />
       </div>
 
       <!-- Notice Title -->
       <div class="mb-3">
         <label class="form-label">Notice Title</label>
-        <input type="text" name="notice_title" class="form-control" placeholder="Enter notice title" required />
+        <input type="text" name="notice_title" class="form-control" placeholder="Enter notice title" id="notice_title"/>
       </div>
 
       <!-- Category -->
       <div class="mb-3">
         <label class="form-label">Category</label>
-        <select name="category" class="form-select" required>
+        <select name="category" class="form-select" id="category">
           <option selected disabled>Select Category</option>
           <option value="Personal">Personal</option>
           <option value="General">General</option>
@@ -119,37 +133,39 @@ include pathof('./includes/navbar.php');
       <!-- Sender Faculty -->
       <div class="mb-3">
         <label class="form-label">Sender Faculty</label>
-        <select name="faculty" class="form-select" required>
+        <select name="faculty" class="form-select" id="faculty">
           <option selected disabled>Select Faculty</option>
-          <option value="Faculty 1">Faculty 1</option>
-          <option value="Faculty 2">Faculty 2</option>
-          <option value="Faculty 3">Faculty 3</option>
-          <option value="Faculty 4">Faculty 4</option>
-          <option value="Faculty 5">Faculty 5</option>
+          <?php foreach ($admin as $a) : ?>
+              <option value="<?= htmlspecialchars($a['Username']); ?>">
+                <?= htmlspecialchars($a['Username']); ?>
+              </option>
+            <?php endforeach; ?>
         </select>
       </div>
 
       <!-- Notice Description -->
       <div class="mb-3">
         <label class="form-label">Notice Description</label>
-        <textarea name="description" class="form-control" rows="4" placeholder="Write the notice here..." required></textarea>
+        <textarea name="noticeBody" id="noticeBody" class="form-control" rows="4" placeholder="Write the notice here..."></textarea>
       </div>
 
       <!-- Date -->
       <div class="mb-3">
         <label class="form-label">Date</label>
-        <input type="date" id="dateInput" name="date" class="form-control" required />
+        <input type="date" id="dateInput" name="dateInput" class="form-control"/>
       </div>
 
       <!-- Day (auto-filled) -->
       <div class="mb-4">
         <label class="form-label">Day</label>
-        <input type="text" id="dayInput" name="day" class="form-control" placeholder="Auto-filled from publish date" readonly />
+        <input type="text" id="dayInput" name="dayInput" class="form-control" placeholder="Auto-filled from publish date" readonly />
       </div>
+
+      <small id="emsg" style="color: red;" class="text-danger d-block text-center w-100"></small><br>
 
       <!-- Submit Button -->
       <div class="text-center">
-        <button type="submit" class="btn btn-purple">Post Notice</button>
+        <button type="button" class="btn btn-purple" onclick="Post()">Post Notice</button>
       </div>
     </form>
   </div>
@@ -159,6 +175,52 @@ include pathof('./includes/navbar.php');
 
   <!-- Script to auto select day -->
   <script>
+
+    function Post(){
+
+      let student_name = document.getElementById('student_name').value;
+      let student_email = document.getElementById('student_email').value;
+      let notice_title = document.getElementById('notice_title').value;
+      let category = document.getElementById('category').value;
+      let faculty = document.getElementById('faculty').value;
+      let noticeBody = document.getElementById('noticeBody').value;
+      let dateInput = document.getElementById('dateInput').value;
+      let dayInput = document.getElementById('dayInput').value;
+
+      document.getElementById('emsg').innerHTML = "";
+
+      if(student_name !="" && student_name !=null && student_email !="" && student_email !=null && notice_title !="" && notice_title !=null && category !="" && category !=null && faculty !="" && faculty !=null && dateInput !="" && dateInput !=null && dayInput !="" && dayInput !=null && noticeBody !="" && noticeBody !=null){
+        let data = {
+          student_name:$('#student_name').val(),
+          student_email:$('#student_email').val(),
+          notice_title:$('#notice_title').val(),
+          category:$('#category').val(),
+          faculty:$('#faculty').val(),
+          noticeBody:$('#noticeBody').val(),
+          dateInput:$('#dateInput').val(),
+          dayInput:$('#dayInput').val()
+        }
+
+        $.ajax({
+          url:"../api/notice/issue_personal_notice.php",
+          method:"POST",
+          data:data,
+          success:function(response){
+            alert('Notice Issued Successfully');
+            window.location.href = "../index.php";
+          },
+          error:function(error){
+            alert('Notice Not Issued');
+            window.location.href = "./post_note.php";
+            return false;
+          }
+        });
+      }else{
+        document.getElementById('emsg').innerHTML = "Null Fields Not Allowed";
+        return false;
+      }
+
+    }
     const dateInput = document.getElementById('dateInput');
     const dayInput = document.getElementById('dayInput');
 
@@ -171,6 +233,11 @@ include pathof('./includes/navbar.php');
         dayInput.value = '';
       }
     });
+
+    const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
+
+  // Replace the URL in the address bar without reloading
+  window.history.replaceState({}, document.title, cleanURL);
   </script>
 </body>
 </html>
