@@ -33,3 +33,15 @@ CREATE TABLE `issue_notice`(
     noticeDay varchar(255) NOT NULL,
     publishDate varchar(255) NOT NULL
 );
+
+CREATE TABLE `issue_personal_notice`(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    student_name varchar(255) NOT NULL,
+    student_email varchar(255) NOT NULL UNIQUE,
+    notice_title varchar(255) NOT NULL,
+    category varchar(255) NOT NULL,
+    faculty varchar(255) NOT NULL,
+    noticeBody varchar(255) NOT NULL,
+    dateInput varchar(255) NOT NULL,
+    dayInput varchar(255) NOT NULL
+);
