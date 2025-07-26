@@ -96,10 +96,23 @@
 </head>
 
 <body>
+  <!-- Role selection modal -->
+<div class="modal fade show" id="roleModal" tabindex="-1" style="display:block;background:rgba(0,0,0,0.5);">
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content p-4 text-center">
+    <h5 class="mb-3">Select Login Type</h5>
+    <button class="btn btn-primary w-100 mb-2" onclick="setRole('admin')">Login as Admin</button>
+    <button class="btn btn-success w-100" onclick="setRole('student')">Login as Student</button>
+  </div>
+</div>
+</div>
 
-  <form class="login-form" method="Post">
+  <form class="login-form" method="Post" id="loginForm" style="display:none;">
     <div class="site-name">NotiFyEd</div>
     <h3 class="text-center mb-4">Login</h3>
+
+
+    <input type="hidden" name="user_type" id="user_type">
 
     <!-- Username -->
     <div class="mb-3 input-with-icon">
@@ -128,14 +141,29 @@
   <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+
+
+function setRole(role) {
+  document.getElementById('user_type').value = role;
+  document.getElementById('loginForm').style.display = 'block';
+  const modal = document.getElementById('roleModal');
+  modal.style.display = 'none';
+  modal.classList.remove('show');
+}
     function login() {
 
       let Username = document.getElementById('Username').value;
       let Password = document.getElementById('Password').value;
+      let UserType = document.getElementById('user_type').value;
 
       document.getElementById('emsg1').innerHTML = "";
       document.getElementById('emsg').innerHTML = "";
       document.getElementById('emsg2').innerHTML = "";
+
+      if (!UserType) {
+    document.getElementById('emsg').innerHTML = "Please select login type first.";
+    return;
+  }
 
       let vname = /^[A-Za-z]+(?: [A-Za-z]+)+$/;
       let vpass = /^[A-z0-9]{6,18}$/;
@@ -146,7 +174,8 @@
 
             let data = {
               Username: $('#Username').val(),
-              Password: $('#Password').val()
+              Password: $('#Password').val(),
+              user_type: $('#user_type').val()
             }
 
             $.ajax({
