@@ -35,7 +35,10 @@ if($user){
     $_SESSION['user'] = $user['id'];
     $_SESSION['email'] = $user['Email'];
     $_SESSION['role'] = $userType;
-    echo json_encode(['success' => true, 'user' => $user]);
+    if($userType == 'student'){
+        $_SESSION['class'] = $user['Class']; 
+    }
+    echo json_encode(['success' => true, 'user' => $user ,'session_after_set' => $_SESSION ]);
     exit;
 }else{
 
