@@ -9,6 +9,15 @@ CREATE TABLE `User`(
     Username varchar(255) NOT NULL,
     Email varchar(255) NOT NULL UNIQUE,
     Password varchar(255) NOT NULL,
+    role ENUM('Admin', 'student') NOT NULL DEFAULT 'Admin'
+);
+
+CREATE TABLE `student`(
+    id int AUTO_INCREMENT PRIMARY KEY,
+    Username varchar(255) NOT NULL,
+    Email varchar(255) NOT NULL UNIQUE,
+    Class varchar(255) NOT NULL,
+    Password varchar(255) NOT NULL,
     role ENUM('Admin', 'student') NOT NULL DEFAULT 'student'
 );
 
