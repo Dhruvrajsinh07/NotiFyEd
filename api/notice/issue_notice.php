@@ -18,8 +18,6 @@ $param = [$title,$noticeCategory,$facultyName,$targetClass,$noticeBody,$noticeDa
 $stmt = $conn->prepare($q);
 $notice = $stmt->execute($param);
 
-// $notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 if($notice){
     echo json_encode(['success' => true, 'message' => "Notice Issued"]);
 }else{
