@@ -4,8 +4,8 @@ include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
 
 // Assuming you store role and username in session
-$role = $_SESSION['role'] ?? 'User';
-$username = $_SESSION['username'] ?? 'Guest';
+$role = $_SESSION['role'];
+$username = $_SESSION['Username'];
 ?>
 <style>
   body {
@@ -41,11 +41,69 @@ $username = $_SESSION['username'] ?? 'Guest';
     font-weight: 600;
   }
 
+  .btn-purple {
+    background-color: #6a00ff;
+    color: white;
+    font-weight: 600;
+    border-radius: 50px;
+    border: none;
+    transition: all 0.3s;
+  }
+
+  .btn-purple:hover {
+    background-color: #5800cc;
+    box-shadow: 0 6px 18px rgba(106, 0, 255, 0.3);
+  }
+
+  .form-control {
+    border-radius: 50px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-color: #6a00ff;
+    box-shadow: 0 0 8px rgba(106, 0, 255, 0.4);
+  }
+
+  .nav-card {
+    background-color: #fff;
+    box-shadow: 0 6px 15px rgba(106, 0, 255, 0.1);
+    border-radius: 16px;
+    padding: 1rem 2rem;
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-card:hover {
+    box-shadow: 0 8px 20px rgba(106, 0, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .nav-link.text-purple {
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .nav-link.text-purple:hover {
+    color: #5800cc !important;
+    transform: scale(1.05);
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+
   p {
     font-size: 1.05rem;
     line-height: 1.6;
   }
 </style>
+
 
 <body>
   <div class="main container">
