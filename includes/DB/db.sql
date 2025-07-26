@@ -37,7 +37,7 @@ CREATE TABLE `issue_notice`(
 CREATE TABLE `issue_personal_notice`(
     id int AUTO_INCREMENT PRIMARY KEY,
     student_name varchar(255) NOT NULL,
-    student_email varchar(255) NOT NULL UNIQUE,
+    student_email varchar(255) NOT NULL,
     notice_title varchar(255) NOT NULL,
     category varchar(255) NOT NULL,
     faculty varchar(255) NOT NULL,
