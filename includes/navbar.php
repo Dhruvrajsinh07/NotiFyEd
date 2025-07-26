@@ -50,6 +50,9 @@
             </li><?php
             }else{ ?>
             <li class="nav-item">
+              <a class="nav-link text-purple" href="<?= urlof('./pages/feedback_admin.php');?>">Feedbacks</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/Student/register.php');?>">Add Student</a>
             </li>
             <li class="nav-item">
