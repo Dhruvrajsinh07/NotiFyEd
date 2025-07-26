@@ -3,12 +3,25 @@ require_once "../includes/init.php";
 include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
 
-$q = "SELECT title, noticeCategory, facultyName, targetClass, noticeBody, noticeDay, publishDate FROM issue_notice";
+$role = $_SESSION['role'] ?? null;
+if($role == 'student'){
+  $user_class = $_SESSION['class'];
+
+  $q = "SELECT title, noticeCategory, facultyName, targetClass, noticeBody, noticeDay, publishDate
+  FROM issue_notice
+  WHERE targetClass = 'all' OR targetClass = ?
+  ORDER BY publishDate DESC";
+
+  $stmt = $conn->prepare($q);
+  $stmt->execute([$user_class]);
+}else{
+  $q = "SELECT title, noticeCategory, facultyName, targetClass, noticeBody, noticeDay, publishDate FROM issue_notice";
 
 $stmt = $conn->prepare($q);
 $stmt->execute();
+}
 
-$notices = $stmt->fetchAll(PDO::FETCH_ASSOC)
+$notices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <style>
