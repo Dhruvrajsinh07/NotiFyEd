@@ -164,7 +164,7 @@ include pathof('./includes/navbar.php');
     }
 
     function giveNotice(studentid) {
-      window.location.href = "./pp_note.php";
+      window.location.href = "./pp_note.php?id=" +studentid;
     }
   </script>
 
