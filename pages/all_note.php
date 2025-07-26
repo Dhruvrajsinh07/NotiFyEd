@@ -4,24 +4,77 @@ include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
 
 $role = $_SESSION['role'] ?? null;
-if($role == 'student'){
-  $user_class = $_SESSION['class'];
 
-  $q = "SELECT title, noticeCategory, facultyName, targetClass, noticeBody, noticeDay, publishDate
+
+$general = [];
+$personal = [];
+
+if ($role == 'student') {
+  $user_class = $_SESSION['class'];
+  $user_email = $_SESSION['email'];
+
+  $q = "SELECT title AS notice_title, 
+  noticeCategory AS category, 
+  facultyName AS faculty,
+  targetClass AS target, 
+  noticeBody AS body, 
+  noticeDay AS day, 
+  publishDate AS date
   FROM issue_notice
   WHERE targetClass = 'all' OR targetClass = ?
   ORDER BY publishDate DESC";
 
-  $stmt = $conn->prepare($q);
-  $stmt->execute([$user_class]);
-}else{
-  $q = "SELECT title, noticeCategory, facultyName, targetClass, noticeBody, noticeDay, publishDate FROM issue_notice";
+  $stmt1 = $conn->prepare($q);
+  $stmt1->execute([$user_class]);
+  $general = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-$stmt = $conn->prepare($q);
-$stmt->execute();
+  $q2 = "SELECT
+              notice_title,
+              category,
+              faculty,
+              'Personal' AS target,
+              noticeBody AS body,
+              dayInput AS day,
+              dateInput AS date
+           FROM issue_personal_notice
+           WHERE student_email = ?
+           ORDER BY dateInput DESC";
+  $stmt2 = $conn->prepare($q2);
+  $stmt2->execute([$user_email]);
+  $personal = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+} else {
+  $q = "SELECT title AS notice_title, 
+  noticeCategory AS category, 
+  facultyName AS faculty, 
+  targetClass AS target, 
+  noticeBody AS body, 
+  noticeDay AS day, 
+  publishDate AS date
+  FROM issue_notice ORDER BY publishDate DESC";
+$stmt1 = $conn->prepare($q);
+$stmt1->execute();
+$general = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+
+$q2 = "SELECT
+              notice_title,
+              category,
+              faculty,
+              student_name AS target,
+              noticeBody AS body,
+              dayInput AS day,
+              dateInput AS date
+           FROM issue_personal_notice
+           ORDER BY dateInput DESC";
+    $stmt2 = $conn->prepare($q2);
+    $stmt2->execute();
+    $personal = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 }
 
-$notices = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$notices = array_merge($general, $personal);
+
+usort($notices, function($a, $b) {
+  return strtotime($b['date']) - strtotime($a['date']);
+});
 ?>
 
 <style>
@@ -95,35 +148,35 @@ $notices = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h2 class="text-purple mb-4">All Notices</h2>
 
     <?php
-    foreach($notices as $n):
+    foreach ($notices as $n) :
     ?>
-    <div class="notice-block">
-      <div class="notice-title">📢 <?= $n['noticeCategory']?> - <?= $n['targetClass']?></div>
-      <div class="row g-3 mb-3">
-        <div class="col-md-6">
-          <label class="form-label">Faculty</label>
-          <input type="text" class="form-control" value="<?= $n['facultyName']?>" readonly>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Class</label>
-          <input type="text" class="form-control" value="<?= $n['targetClass']?>" readonly>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Day</label>
-          <input type="text" class="form-control" value="<?= $n['noticeDay']?>" readonly>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label">Published On</label>
-          <input type="text" class="form-control" value="<?= $n['publishDate']?>" readonly>
-        </div>
-        <div class="col-12">
-          <label class="form-label">Notice Description</label>
-          <textarea class="form-control" rows="3" readonly>
-          <?= $n['noticeBody']?>
+      <div class="notice-block">
+        <div class="notice-title">📢 <?= $n['category'] ?> - <?= $n['target'] ?></div>
+        <div class="row g-3 mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Faculty</label>
+            <input type="text" class="form-control" value="<?= $n['faculty'] ?>" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Class</label>
+            <input type="text" class="form-control" value="<?= $n['target'] ?>" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Day</label>
+            <input type="text" class="form-control" value="<?= $n['day'] ?>" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Published On</label>
+            <input type="text" class="form-control" value="<?= $n['date'] ?>" readonly>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Notice Description</label>
+            <textarea class="form-control" rows="3" readonly>
+          <?= $n['body'] ?>
           </textarea>
+          </div>
         </div>
       </div>
-    </div>
     <?php endforeach; ?>
   </div>
 
