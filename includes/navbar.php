@@ -14,29 +14,50 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav justify-content-around w-100">
+            <?php
+            if($_SESSION['role'] == 'admin'){
+              ?><li class="nav-item">
+              <a class="nav-link text-purple" href="<?= urlof('./pages/post_note.php')?>">Post Notice</a>
+            </li><?php
+            }
+            ?>
+            
             <li class="nav-item">
-              <a class="nav-link text-purple" href="../pages/post_note.php">Post Notice</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-purple" href="../pages/all_note.php">All Notices</a>
+              <a class="nav-link text-purple" href="<?= urlof('./pages/all_note.php')?>">All Notices</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link text-purple" href="#">Schedule Notices</a>
             </li> -->
             <li class="nav-item">
-              <a class="nav-link text-purple" href="../index.php">Profile</a>
+              <a class="nav-link text-purple" href="<?= urlof('./index.php')?>">Profile</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link text-purple" href="#">Email Notifications</a>
             </li> -->
-            <li class="nav-item">
-              <a class="nav-link text-purple" href="../pages/personal.php">Personal Notice</a>
-            </li>
+
+            <?php
+            if($_SESSION['role'] == 'admin'){
+              ?><li class="nav-item">
+              <a class="nav-link text-purple" href="<?= urlof('./pages/personal.php')?>">Personal Notice</a>
+            </li><?php
+            }
+            ?>
+            
             <?php
             if($_SESSION['role'] == 'student'){
               ?><li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/feedback.php');?>">Feedback</a>
             </li><?php
+            }else{ ?>
+            <li class="nav-item">
+              <a class="nav-link text-purple" href="<?= urlof('./pages/Student/register.php');?>">Add Student</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-purple" href="<?= urlof('./pages/User/register.php');?>">Add Admin</a>
+            </li>
+
+            <?php
+
             }
             ?>
             
