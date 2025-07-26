@@ -6,8 +6,23 @@ require_once "../../includes/init.php";
 
 $Username = $_POST['Username'] ?? null;
 $Password = $_POST['Password'] ?? null;
+$userType = $_POST['user_type'] ?? null;
 
-$q = "SELECT * FROM `user` WHERE `Username` = ? and `Password` = ? ";
+if (!$userType) {
+    echo json_encode(['success' => false, 'reason' => 'NoUserType']);
+    exit;
+}
+
+if ($userType === 'admin') {
+    $table = "User";
+} elseif ($userType === 'student') {
+    $table = "student";
+} else {
+    echo json_encode(['success' => false, 'reason' => 'InvalidType']);
+    exit;
+}
+
+$q = "SELECT * FROM `$table` WHERE `Username` = ? and `Password` = ? ";
 $param = [$Username,$Password];
 
 $stmt = $conn->prepare($q);
@@ -19,12 +34,12 @@ if($user){
     $_SESSION['loggedIn'] = true;
     $_SESSION['user'] = $user['id'];
     $_SESSION['email'] = $user['Email'];
-    $_SESSION['role'] = $user['role'];
+    $_SESSION['role'] = $userType;
     echo json_encode(['success' => true, 'user' => $user]);
     exit;
 }else{
 
-    $q2 = "SELECT * FROM `user` WHERE `Username` = ?";
+    $q2 = "SELECT * FROM `$table` WHERE `Username` = ?";
 
     $stmt2= $conn->prepare($q2);
     $stmt2->execute([$Username]);
