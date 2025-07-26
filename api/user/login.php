@@ -35,6 +35,7 @@ if($user){
     $_SESSION['user'] = $user['id'];
     $_SESSION['email'] = $user['Email'];
     $_SESSION['role'] = $userType;
+    $_SESSION['Username'] = $user['Username'];
     if($userType == 'student'){
         $_SESSION['class'] = $user['Class']; 
         $_SESSION['name'] = $user['Username'];
