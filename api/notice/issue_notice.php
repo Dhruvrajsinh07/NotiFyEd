@@ -16,9 +16,9 @@ $q = "INSERT INTO `issue_notice`(`title`, `noticeCategory`, `facultyName`, `targ
 $param = [$title,$noticeCategory,$facultyName,$targetClass,$noticeBody,$noticeDay,$publishDate];
 
 $stmt = $conn->prepare($q);
-$stmt->execute($param);
+$notice = $stmt->execute($param);
 
-$notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// $notice = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if($notice){
     echo json_encode(['success' => true, 'message' => "Notice Issued"]);
