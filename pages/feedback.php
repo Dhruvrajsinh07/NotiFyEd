@@ -1,5 +1,6 @@
 <?php
 require_once "../includes/init.php";
+$name = $_SESSION['name'];
 include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
 ?>
@@ -87,15 +88,15 @@ include pathof('./includes/navbar.php');
   <div class="form-wrapper">
     <div class="form-card">
       <h4 class="form-title mb-4">Submit Request / Info</h4>
-      <form action="submit_form.php" method="POST">
+      <form method="POST">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <input type="text" name="title" id="title" class="form-control" placeholder="Enter title" required>
+          <input type="text" name="title" id="title" class="form-control" placeholder="Enter title">
         </div>
 
         <div class="mb-3">
           <label for="category" class="form-label">Category</label>
-          <select name="category" id="category" class="form-select" required>
+          <select name="category" id="category" class="form-select">
             <option value="">Select category</option>
             <option value="General">General</option>
             <option value="Request">Request</option>
@@ -105,25 +106,67 @@ include pathof('./includes/navbar.php');
 
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
-          <textarea name="description" id="description" class="form-control" rows="5" placeholder="Write here..." required></textarea>
+          <textarea name="description" id="description" class="form-control" rows="5" placeholder="Write here..."></textarea>
         </div>
 
         <div class="mb-3">
           <label for="submittedBy" class="form-label">Submitted By</label>
-          <input type="text" name="submitted_by" id="submittedBy" class="form-control" placeholder="Your name or ID" required>
+          <input type="text" name="submitted_by" id="submitted_by" class="form-control" placeholder="Your name or ID" value="<?= $name?>" readonly>
         </div>
 
         <div class="mb-3">
           <label for="date" class="form-label">Date</label>
-          <input type="date" name="date" id="date" class="form-control" required>
+          <input type="date" name="date" id="date" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-purple w-100">Submit</button>
+        <small id="emsg" style="color: red;" class="text-danger d-block text-center w-100"></small>
+
+        <button type="button" class="btn btn-purple w-100" onclick="feedback()">Submit</button>
       </form>
     </div>
   </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function feedback(){
+      let title = document.getElementById('title').value;
+      let category = document.getElementById('category').value;
+      let description = document.getElementById('description').value;
+      let submitted_by = document.getElementById('submitted_by').value;
+      let date = document.getElementById('date').value;
+
+      document.getElementById('emsg').innerHTML = "";
+
+      if(title !="" && title !=null && category !="" && category !=null && description !="" && description !=null && submitted_by !="" && submitted_by !=null && date !="" && date !=null){
+        let data = {
+          title:$('#title').val(),
+          category:$('#category').val(),
+          description:$('#description').val(),
+          submitted_by:$('#submitted_by').val(),
+          date:$('#date').val()
+        }
+
+        $.ajax({
+
+          url:"../api/Student/feedback.php",
+          method:"POST",
+          data:data,
+          success:function(response){
+            alert("Feedback Sent Successfully");
+            window.location.href = "../index.php";
+          },
+          error:function(error){
+            alert("Feedback Not Sent");
+            window.location.href = "./feedback.php";
+            return false;
+          }
+        });
+      }else{
+        document.getElementById('emsg').innerHTML = "Null Fields Not Allowed";
+        return false;
+      }
+    }
+  </script>
 </body>
 </html>
