@@ -1,27 +1,8 @@
 <?php
 require_once "./includes/init.php";
-$url = urlof('pages/User/login.php');
-if (!isset($_SESSION['user'])) {
-    header("Location: $url");
-    exit;
-}
+include pathof('./includes/header.php');
+include pathof('./includes/navbar.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Admin Profile | NotiFyEd</title>
-
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- Font Awesome -->
-  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -115,52 +96,6 @@ if (!isset($_SESSION['user'])) {
   </style>
 </head>
 <body>
-
-  <!-- Site Name -->
-  <div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
-    NotiFyEd Admin
-  </div>
-
-  <!-- Top Navbar -->
-  <div class="container">
-    <div class="nav-card">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid px-0">
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav justify-content-around w-100">
-              <li class="nav-item">
-                <a class="nav-link text-purple" href="./pages/post_note.php">Post Notice</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-purple" href="./pages/all_note.php">All Notices</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-purple" href="./index.php">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-purple" href="./pages/personal.php">Personal Notice</a>
-              </li>
-              <?php
-            if($_SESSION['role'] == 'student'){
-              ?><li class="nav-item">
-              <a class="nav-link text-purple" href="<?= urlof('./pages/feedback.php');?>">Feedback</a>
-            </li><?php
-            }
-            ?>
-              <li class="nav-item">
-                <a class="nav-link text-purple" href="<?=urlof('api/user/logout.php')?>" onclick="return confirm('Sure! You Want To Logout.');">Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </div>
-
   <!-- Profile Form -->
   <div class="main container">
     <h2 class="mb-4">Admin Profile</h2>
