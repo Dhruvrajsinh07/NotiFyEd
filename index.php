@@ -2,133 +2,64 @@
 require_once "./includes/init.php";
 include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
+
+// Assuming you store role and username in session
+$role = $_SESSION['role'] ?? 'User';
+$username = $_SESSION['username'] ?? 'Guest';
 ?>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f0fa;
-    }
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f0fa;
+  }
 
-    .text-purple {
-      color: #6a00ff !important;
-    }
+  .text-purple {
+    color: #6a00ff !important;
+  }
 
-    .main {
-      padding: 2rem;
-    }
+  .main {
+    padding: 2rem;
+  }
 
-    .card {
-      border: none;
-      border-radius: 20px;
-      backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 12px 30px rgba(106, 0, 255, 0.1);
-      transition: all 0.3s ease;
-    }
+  .card {
+    border: none;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 12px 30px rgba(106, 0, 255, 0.1);
+    transition: all 0.3s ease;
+  }
 
-    .card:hover {
-      transform: scale(1.01);
-    }
+  .card:hover {
+    transform: scale(1.01);
+  }
 
-    .card-title,
-    .form-label,
-    h2 {
-      color: #6a00ff !important;
-      font-weight: 600;
-    }
+  .card-title,
+  .form-label,
+  h2 {
+    color: #6a00ff !important;
+    font-weight: 600;
+  }
 
-    .btn-purple {
-      background-color: #6a00ff;
-      color: white;
-      font-weight: 600;
-      border-radius: 50px;
-      border: none;
-      transition: all 0.3s;
-    }
+  p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+</style>
 
-    .btn-purple:hover {
-      background-color: #5800cc;
-      box-shadow: 0 6px 18px rgba(106, 0, 255, 0.3);
-    }
-
-    .form-control {
-      border-radius: 50px;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .form-control:focus {
-      border-color: #6a00ff;
-      box-shadow: 0 0 8px rgba(106, 0, 255, 0.4);
-    }
-
-    .nav-card {
-      background-color: #fff;
-      box-shadow: 0 6px 15px rgba(106, 0, 255, 0.1);
-      border-radius: 16px;
-      padding: 1rem 2rem;
-      margin-bottom: 1.5rem;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-    }
-
-    .nav-card:hover {
-      box-shadow: 0 8px 20px rgba(106, 0, 255, 0.15);
-      transform: translateY(-2px);
-    }
-
-    .nav-link.text-purple {
-      font-weight: 600;
-      transition: all 0.3s ease;
-      text-align: center;
-    }
-
-    .nav-link.text-purple:hover {
-      color: #5800cc !important;
-      transform: scale(1.05);
-    }
-
-    .navbar-toggler {
-      border: none;
-    }
-
-    .navbar-toggler:focus {
-      box-shadow: none;
-    }
-  </style>
-</head>
 <body>
-  <!-- Profile Form -->
   <div class="main container">
-    <h2 class="mb-4">Admin Profile</h2>
-
     <div class="card p-4">
-      <form>
-        <div class="mb-3">
-          <label for="facultyName" class="form-label">Faculty Name</label>
-          <input type="text" class="form-control" id="facultyName" value="Dr. Sameer Patil" />
-        </div>
+      <h2 class="card-title mb-3">Welcome, <?= ucfirst($username); ?>!</h2>
+      <p class="mb-1"><strong>You are logged in as:</strong> <span class="text-purple"><?= ucfirst($role); ?></span></p>
 
-        <div class="mb-3">
-          <label for="facultyNo" class="form-label">Faculty No</label>
-          <input type="text" class="form-control" id="facultyNo" value="FCT1234" />
-        </div>
-
-        <div class="mb-3">
-          <label for="designation" class="form-label">Designation</label>
-          <input type="text" class="form-control" id="designation" value="Assistant Professor" />
-        </div>
-
-        <div class="mb-3">
-          <label for="subject" class="form-label">Subject</label>
-          <input type="text" class="form-control" id="subject" value="Database Management System" />
-        </div>
-
-        <div class="mb-3">
-          <label for="facultyEmail" class="form-label">Email</label>
-          <input type="email" class="form-control" id="facultyEmail" value="sameer.patil@college.edu" />
-        </div>
-
-        <button type="submit" class="btn btn-purple">Update Profile</button>
-      </form>
+      <?php if (strtolower($role) === 'admin'): ?>
+        <p class="mt-4">As an <strong>Admin</strong>, you can create, manage and schedule important notices, whether public or personal, for different classes. Use the dashboard to post updates, track published notices, and engage effectively with students. Ensure timely communication using categorized announcements.</p>
+      <?php elseif (strtolower($role) === 'student'): ?>
+        <p class="mt-4">As a <strong>Student</strong>, you can view all notices related to your class, assignments, holidays, and personal messages. This system keeps you updated with important announcements. Stay tuned and always check your dashboard for the latest info.</p>
+      <?php else: ?>
+        <p class="mt-4">Welcome to the Digital Notice Board system. Please use the navigation bar to access the features available to your role.</p>
+      <?php endif; ?>
     </div>
   </div>
 
