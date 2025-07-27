@@ -140,6 +140,9 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <option value="TY-A">TY-A</option>
             <option value="TY-B">TY-B</option>
             <option value="TY-C">TY-C</option>
+            <option value="FY">FY</option>
+            <option value="SY">SY</option>
+            <option value="TY">TY</option>
           </select>
         </div>
 
