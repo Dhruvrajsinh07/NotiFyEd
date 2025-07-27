@@ -80,7 +80,7 @@ include pathof('./includes/navbar.php');
 <body>
 
   <div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
-    Custom Form - NotiFyEd
+    Feedback Form
   </div>
 
   <div class="form-wrapper">

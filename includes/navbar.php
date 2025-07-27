@@ -1,7 +1,14 @@
-<div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
+<?php
+if(isset($_SESSION['role']) && $_SESSION['role'] == 'admin'){
+  ?><div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
   NotiFyEd Admin
-</div>
-
+</div><?php
+}else{
+  ?><div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
+  NotiFyEd Student
+</div><?php
+}
+?>
 <div class="container">
   <div class="nav-card">
     <nav class="navbar navbar-expand-lg">
