@@ -13,6 +13,10 @@ if ($role == 'student') {
   $user_class = $_SESSION['class'];
   $user_email = $_SESSION['email'];
 
+
+  $class_prefix = strtoupper(explode('-', $user_class)[0]);
+
+
   $q = "SELECT title AS notice_title, 
   noticeCategory AS category, 
   facultyName AS faculty,
@@ -21,11 +25,11 @@ if ($role == 'student') {
   noticeDay AS day, 
   publishDate AS date
   FROM issue_notice
-  WHERE targetClass = 'all' OR targetClass = ?
+  WHERE targetClass = 'all' OR targetClass = ? OR targetClass = ?
   ORDER BY publishDate DESC";
 
   $stmt1 = $conn->prepare($q);
-  $stmt1->execute([$user_class]);
+  $stmt1->execute([$user_class , $class_prefix]);
   $general = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
   $q2 = "SELECT
