@@ -5,10 +5,21 @@ include pathof('./includes/navbar.php');
 ?>
 
 <style>
+header,
+.site-name {
+  margin-top: 0 !important;
+  padding-top: 0.8rem; /* adjust to make it a bit high but not too much */
+  padding-bottom: 0.8rem;
+}
+.nav-card {
+  margin-top: 0 !important;
+}
   body {
     font-family: 'Poppins', sans-serif;
     background-color: #f4f0fa;
     padding: 2rem;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 
   h2 {
