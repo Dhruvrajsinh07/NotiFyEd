@@ -111,9 +111,15 @@ $username = $_SESSION['Username'];
       <p class="mb-1"><strong>You are logged in as:</strong> <span class="text-purple"><?= ucfirst($role); ?></span></p>
 
       <?php if (strtolower($role) === 'admin'): ?>
-        <p class="mt-4">As an <strong>Admin</strong>, you can create, manage and schedule important notices, whether public or personal, for different classes. Use the dashboard to post updates, track published notices, and engage effectively with students. Ensure timely communication using categorized announcements.</p>
+        <p class="mt-4">
+        ➤ As an <strong>Admin</strong>, you can create, manage and schedule important notices, whether public or personal, for different classes. <br>
+        ➤ Use the dashboard to post updates, track published notices, and engage effectively with students. <br>
+        ➤ Ensure timely communication using categorized announcements.</p>
       <?php elseif (strtolower($role) === 'student'): ?>
-        <p class="mt-4">As a <strong>Student</strong>, you can view all notices related to your class, assignments, holidays, and personal messages. This system keeps you updated with important announcements. Stay tuned and always check your dashboard for the latest info.</p>
+        <p class="mt-4">
+        ➤ As a <strong>Student</strong>, you can view all notices related to your class, Events, Exams, holidays, and personal Notices. <br>
+        ➤ This system keeps you updated with important announcements. <br>
+        ➤ Stay tuned and always check your dashboard for the latest info.</p>
       <?php else: ?>
         <p class="mt-4">Welcome to the Digital Notice Board system. Please use the navigation bar to access the features available to your role.</p>
       <?php endif; ?>
