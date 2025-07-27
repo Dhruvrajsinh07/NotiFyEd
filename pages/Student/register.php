@@ -4,10 +4,6 @@ include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
 ?>
 <style>
-/* ===========================
-   ✅ Navbar Styles (added)
-   =========================== */
-
    .nav-card {
   background-color: #fff;
   box-shadow: 0 6px 15px rgba(106, 0, 255, 0.1);
@@ -40,10 +36,6 @@ include pathof('./includes/navbar.php');
 .navbar-toggler:focus {
   box-shadow: none;
 }
-
-/* ===========================
-   ✅ Registration Form Styles (unchanged)
-   =========================== */
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -125,18 +117,18 @@ body {
   margin-bottom: 0.5rem;
   display: block;
 }
-/* ✅ Force navbar link colors */
+
 .nav-card .nav-link {
-  color: #6a00ff !important;   /* purple theme */
+  color: #6a00ff !important;   
   font-weight: 600;
   transition: all 0.3s ease;
   text-align: center;
-  text-decoration: none;       /* remove underline if any */
+  text-decoration: none;       
 }
 
 .nav-card .nav-link:hover,
 .nav-card .nav-link:focus {
-  color: #5800cc !important;   /* darker purple on hover */
+  color: #5800cc !important;   
   text-decoration: none;
 }
 
@@ -209,7 +201,7 @@ body {
 }
 @media (max-width: 480px) {
   .registration-form {
-    margin-top: 5rem; /* increase this value until it visually feels centered */
+    margin-top: 5rem; 
   }
 }
 
@@ -274,7 +266,6 @@ body {
         <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
     </form>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>

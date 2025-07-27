@@ -89,16 +89,13 @@ include pathof('./includes/navbar.php');
 
 <body>
 
-  <!-- Page Heading -->
   <div class="container">
     <h2>Send Personal Notice to Students</h2>
 
-    <!-- Search Bar -->
     <div class="search-bar">
       <input type="text" class="form-control search-input" id="studentSearch" placeholder="Search by name, class, roll no..." onkeyup="filterStudents()" />
     </div>
 
-    <!-- Table Container -->
     <div class="table-container">
       <table class="table table-bordered table-hover align-middle mb-0" id="studentTable">
         <thead>
@@ -111,14 +108,12 @@ include pathof('./includes/navbar.php');
           </tr>
         </thead>
         <tbody id="tbody">
-          <!-- Example rows -->
 
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Search Filter Script -->
   <script>
     displayrecord();
 
@@ -168,7 +163,6 @@ include pathof('./includes/navbar.php');
     }
   </script>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

@@ -5,7 +5,6 @@ include pathof('./includes/navbar.php');
 
 ?>
 <style>
-  /* Font and Basic Reset */
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #f4f0fa;
@@ -13,12 +12,10 @@ body {
   padding: 0;
 }
 
-/* Purple Text Utility */
 .text-purple {
   color: #6a00ff !important;
 }
 
-/* Navbar Card Container */
 .nav-card {
   background-color: #ffffff;
   box-shadow: 0 6px 15px rgba(106, 0, 255, 0.1);
@@ -33,7 +30,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Navbar Links */
+
 .navbar-nav .nav-link.text-purple {
   font-weight: 600;
   transition: all 0.3s ease;
@@ -46,7 +43,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Site Name Heading */
+
 .site-name {
   font-size: 1.8rem;
   font-weight: 700;
@@ -63,9 +60,9 @@ body {
   padding: 0;
 }
 
-/* ✅ Registration Form Styles */
+
 .registration-form {
-  max-width: 480px;            /* same width as student account form */
+  max-width: 480px;            
   margin: 3rem auto 2rem;
   background: #fff;
   border-radius: 20px;
@@ -146,7 +143,6 @@ body {
   color: #888;
 }
 
-/* ✅ Responsive adjustments */
 @media (max-width: 768px) {
   .registration-form {
     margin: 2rem 1rem;
@@ -160,7 +156,7 @@ body {
 @media (max-width: 480px) {
   .registration-form {
     padding: 1.2rem;
-    margin-top: 5rem; /* push down below navbar on small screens */
+    margin-top: 5rem; 
   }
   .registration-form h3 {
     font-size: 1.3rem;
@@ -177,7 +173,6 @@ body {
   }
 }
 
-/* Fade-in animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -194,7 +189,7 @@ body {
 </head>
 
 <body>
-  <!-- <div class="registration-wrapper"> -->
+
     <form class="registration-form" method="Post">
       <h3>Create Admin Account</h3>
 
@@ -232,14 +227,11 @@ body {
 
     </form>
 
-  <!-- </div> -->
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     function insert() {
-      // alert('Registration function triggered. Backend integration goes here.');
 
       let username = document.getElementById('Username').value;
       let Email = document.getElementById('Email').value;

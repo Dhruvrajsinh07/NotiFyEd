@@ -1,10 +1,7 @@
-<!-- navbar.php -->
-<!-- Site Name -->
 <div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
   NotiFyEd Admin
 </div>
 
-<!-- Custom Top Navbar -->
 <div class="container">
   <div class="nav-card">
     <nav class="navbar navbar-expand-lg">
@@ -25,16 +22,9 @@
             <li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./pages/all_note.php')?>">All Notices</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link text-purple" href="#">Schedule Notices</a>
-            </li> -->
             <li class="nav-item">
               <a class="nav-link text-purple" href="<?= urlof('./index.php')?>">Dashboard</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link text-purple" href="#">Email Notifications</a>
-            </li> -->
-
             <?php
             if($_SESSION['role'] == 'admin'){
               ?><li class="nav-item">

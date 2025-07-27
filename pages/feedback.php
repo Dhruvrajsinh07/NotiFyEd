@@ -79,12 +79,10 @@ include pathof('./includes/navbar.php');
 </head>
 <body>
 
-  <!-- Optional Header -->
   <div class="text-center py-3" style="font-size: 1.8rem; font-weight: 700; color: #6a00ff;">
     Custom Form - NotiFyEd
   </div>
 
-  <!-- Form Layout -->
   <div class="form-wrapper">
     <div class="form-card">
       <h4 class="form-title mb-4">Submit Request / Info</h4>
@@ -126,7 +124,6 @@ include pathof('./includes/navbar.php');
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function feedback(){

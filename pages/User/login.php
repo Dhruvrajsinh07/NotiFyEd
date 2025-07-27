@@ -6,13 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login | NotiFyEd</title>
 
-  <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- Poppins font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- FontAwesome -->
   <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -96,7 +93,6 @@
 </head>
 
 <body>
-  <!-- Role selection modal -->
 <div class="modal fade show" id="roleModal" tabindex="-1" style="display:block;background:rgba(0,0,0,0.5);">
 <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content p-4 text-center">
@@ -114,7 +110,6 @@
 
     <input type="hidden" name="user_type" id="user_type">
 
-    <!-- Username -->
     <div class="mb-3 input-with-icon">
       <input type="text" class="form-control" id="Username" name="Username" placeholder="Username" />
       <i class="fa fa-user form-icon"></i>
@@ -122,7 +117,6 @@
     <small id="emsg2" style="color: red;" class="text-danger d-block text-center w-100"></small>
 
 
-    <!-- Password -->
     <div class="mb-4 input-with-icon">
       <input type="password" class="form-control" id="Password" name="Password" placeholder="Password" />
       <i class="fa fa-lock form-icon"></i>
@@ -131,14 +125,13 @@
 
     <small id="emsg" style="color: red;" class="text-danger d-block text-center w-100"></small>
 
-    <!-- Login Button -->
+
     <input type="button" class="btn-purple" value="Login" onclick="login()" />
 
     <p class="text-center mt-3" style="font-size: 0.85rem; color: #888;">Powered by <span style="color: #6a00ff; font-weight: 600;">NotiFyEd</span></p>
 
   </form>
 
-  <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
 

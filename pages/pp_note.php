@@ -100,25 +100,25 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h2>📢 Post Personal Notice</h2>
 
     <form method="POST">
-      <!-- To Student -->
+      
       <div class="mb-3">
         <label class="form-label">To Student</label>
         <input type="text" name="student_name" class="form-control" value="<?= $fstud['Username']?>" id="student_name" readonly />
       </div>
 
-      <!-- Email -->
+      
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input type="email" name="student_email" class="form-control" value="<?= $fstud['Email']?>" id="student_email" readonly />
       </div>
 
-      <!-- Notice Title -->
+      
       <div class="mb-3">
         <label class="form-label">Notice Title</label>
         <input type="text" name="notice_title" class="form-control" placeholder="Enter notice title" id="notice_title"/>
       </div>
 
-      <!-- Category -->
+      
       <div class="mb-3">
         <label class="form-label">Category</label>
         <select name="category" class="form-select" id="category">
@@ -130,7 +130,7 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </select>
       </div>
 
-      <!-- Sender Faculty -->
+      
       <div class="mb-3">
         <label class="form-label">Sender Faculty</label>
         <select name="faculty" class="form-select" id="faculty">
@@ -143,19 +143,19 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </select>
       </div>
 
-      <!-- Notice Description -->
+      
       <div class="mb-3">
         <label class="form-label">Notice Description</label>
         <textarea name="noticeBody" id="noticeBody" class="form-control" rows="4" placeholder="Write the notice here..."></textarea>
       </div>
 
-      <!-- Date -->
+      
       <div class="mb-3">
         <label class="form-label">Date</label>
         <input type="date" id="dateInput" name="dateInput" class="form-control"/>
       </div>
 
-      <!-- Day (auto-filled) -->
+      
       <div class="mb-4">
         <label class="form-label">Day</label>
         <input type="text" id="dayInput" name="dayInput" class="form-control" placeholder="Auto-filled from publish date" readonly />
@@ -163,17 +163,17 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       <small id="emsg" style="color: red;" class="text-danger d-block text-center w-100"></small><br>
 
-      <!-- Submit Button -->
+      
       <div class="text-center">
         <button type="button" class="btn btn-purple" onclick="Post()">Post Notice</button>
       </div>
     </form>
   </div>
 
-  <!-- Bootstrap JS -->
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Script to auto select day -->
+  
   <script>
 
     function Post(){
@@ -235,8 +235,7 @@ $admin = $stmt->fetchAll(PDO::FETCH_ASSOC);
     });
 
     const cleanURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
-
-  // Replace the URL in the address bar without reloading
+    
   window.history.replaceState({}, document.title, cleanURL);
   </script>
 </body>

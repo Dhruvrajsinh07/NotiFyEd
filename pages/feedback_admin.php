@@ -4,12 +4,6 @@ include pathof('./includes/header.php');
 include pathof('./includes/navbar.php');
 ?>
 <style>
-    
-/* ===========================
-   Feedback Records Table Styles (from reference)
-   =========================== */
-
-/* Table container for spacing and shadow */
 .table-container {
   max-width: 1100px;
   margin: 2rem auto;
@@ -17,10 +11,9 @@ include pathof('./includes/navbar.php');
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  overflow-x: auto; /* horizontal scroll if screen small */
+  overflow-x: auto; 
 }
 
-/* Base table style */
 .table {
   width: 100%;
   background-color: #fff;
@@ -34,9 +27,8 @@ include pathof('./includes/navbar.php');
   animation: fadeInTable 0.4s ease-in;
 }
 
-/* Header cells */
 .table thead th {
-  background-color:#6a00ff !important; /* blue theme header */
+  background-color:#6a00ff !important;
   color: #fff;
   font-weight: 600;
   font-size: 15px;
@@ -45,18 +37,18 @@ include pathof('./includes/navbar.php');
   border-bottom: 1px solid #0056b3;
   white-space: nowrap;
 }
-/* Make Title column wider and improve text layout */
+
 .table td:nth-child(2),
 .table th:nth-child(2) {
-  min-width: 150px;       /* increase width of Title column */
-  font-size: 1rem;        /* slightly larger font for better readability */
-  white-space: normal;    /* allow wrapping if needed */
-  word-break: break-word; /* break long words properly */
-  text-align: left;       /* keep text aligned to left */
+  min-width: 150px;       
+  font-size: 1rem;        
+  white-space: normal;    
+  word-break: break-word; 
+  text-align: left;       
 }
 
 
-/* Body cells */
+
 .table td {
   padding: 14px;
   text-align: left;
@@ -66,12 +58,10 @@ include pathof('./includes/navbar.php');
   transition: background-color 0.3s ease;
 }
 
-/* Row hover effect */
 .table tbody tr:hover {
   background-color: #f1f3f5;
 }
 
-/* Links for update/delete if any */
 .table a {
   color: #007bff;
   text-decoration: none;
@@ -84,7 +74,7 @@ include pathof('./includes/navbar.php');
   text-decoration: underline;
 }
 
-/* When no records */
+
 .table tbody tr td[colspan] {
   text-align: center;
   padding: 1rem;
@@ -92,7 +82,7 @@ include pathof('./includes/navbar.php');
   font-weight: 500;
 }
 
-/* Heading style */
+
 .card-title,
 h2 {
   color: #6a00ff !important;
@@ -103,7 +93,7 @@ h2 {
   font-size: 2rem;
 }
 
-/* Scrollbar styling */
+
 .table-container::-webkit-scrollbar {
   height: 6px;
 }
@@ -115,7 +105,6 @@ h2 {
   background: #f4f0fa;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .table-container {
     margin: 1rem;
@@ -138,7 +127,7 @@ h2 {
   }
   .table {
     font-size: 0.8rem;
-    min-width: 600px; /* enable horizontal scroll on very small screens */
+    min-width: 600px; 
   }
   .table td,
   .table th {
@@ -146,7 +135,7 @@ h2 {
   }
 }
 
-/* Animation */
+
 @keyframes fadeInTable {
   from {
     opacity: 0;
