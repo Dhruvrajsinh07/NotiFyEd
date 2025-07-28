@@ -163,6 +163,15 @@ header,
   <div class="main container">
     <h2 class="text-purple mb-4">All Notices</h2>
 
+    <div class="mb-4">
+  <input 
+    type="text" 
+    id="searchInput" 
+    class="form-control" 
+    placeholder="Search notices..."
+    style="border-radius: 12px; padding: 0.75rem 1rem; border: 1px solid #ccc;"
+  >
+</div>
     <?php
     foreach ($notices as $n) :
     ?>
@@ -200,5 +209,26 @@ header,
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+<script>
+document.getElementById('searchInput').addEventListener('input', function() {
+  const query = this.value.toLowerCase().trim();
+  document.querySelectorAll('.notice-block').forEach(block => {
+    const inputs = block.querySelectorAll('input.form-control[readonly]');
+    const faculty = inputs[0]?.value.toLowerCase() || "";
+    const classText = inputs[1]?.value.toLowerCase() || "";
+    const dayText = inputs[2]?.value.toLowerCase() || "";
+    const dateText = inputs[3]?.value.toLowerCase() || "";
+    const categoryTarget = block.querySelector('.notice-title')?.textContent.toLowerCase() || "";
+
+    // Combine only the selected fields (no description)
+    const combined = faculty + " " + classText + " " + dayText + " " + dateText + " " + categoryTarget;
+
+    block.style.display = combined.includes(query) ? '' : 'none';
+  });
+});
+</script>
+
+
+
 
 </html>
