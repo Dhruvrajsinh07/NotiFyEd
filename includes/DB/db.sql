@@ -19,7 +19,7 @@ CREATE TABLE `student`(
     Class varchar(255) NOT NULL,
     Password varchar(255) NOT NULL,
     role ENUM('Admin', 'student') NOT NULL DEFAULT 'student',
-    last_login DATETIME DEFAULT NULL;
+    last_login DATETIME DEFAULT NULL
 );
 
 INSERT INTO `user`(`Username`, `Email`, `Password`, `role`) VALUES ('Khushal Rajani','admin@gmail.com','admin12345','Admin');
